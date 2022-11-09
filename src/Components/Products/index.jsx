@@ -1,36 +1,47 @@
 import { connect } from "react-redux";
-import { setChosenProducts } from "../../store/products";
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 
 const Products = (props) => {
   console.log(props);
-  const { products, activeCategory, setChosenProducts } = props;
+  const { products, categories } = props;
   return (
     <>
-      {
-        products.map((product, index) => {
-          if (product.category === activeCategory) {
+      <Typography gutterBottom variant="h2" component="div" align="center">{categories.activeCategory}</Typography>
+      <Typography variant="h5" color="text.secondary" align="center">Category Description Goes Here</Typography>
+      <Box sx={{ display: 'flex', margin: '25px' }}>
+        {
+          products.map((product, index) => {
             return (
-              <div key={`product-${index}`}>
-                <h3>{product.name}</h3>
-              </div>
+              <Card key={`product-${index}`} sx={{ maxWidth: 345, margin: '25px' }}>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image="/static/images/cards/contemplative-reptile.jpg"
+                  alt="green iguana"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">{product.name}</Typography>
+                  <Typography variant="body2" color="text.secondary">Price: {product.price}</Typography>
+                  <Typography variant="body2" color="text.secondary">Stock: {product.inStock}</Typography>
+                </CardContent>
+                <CardActions>
+                  <Button size="small">ADD TO CART</Button>
+                  <Button size="small">VIEW DETAILS</Button>
+                </CardActions>
+              </Card>
             )
-          }
-          return null;
-        })
-      }
+          })
+        }
+      </Box>
     </>
   )
 }
 
-const mapStateToProps = ({ products }) => {
+const mapStateToProps = ({ products, categories }) => {
   return {
-    products: products.products,
-    chosenProducts: products.chosenProducts
+    products: products,
+    categories: categories,
   }
 }
 
-const mapDispatchToProps = {
-  setChosenProducts
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default connect(mapStateToProps)(Products);

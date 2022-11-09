@@ -1,7 +1,14 @@
+import { Container, CssBaseline, Typography } from '@mui/material';
+
+
 const Footer = () => {
   return (
     <>
-      <h3>&copy; 2022 Code Fellows</h3>
+      <CssBaseline />
+      <Container maxWidth="100%" align="center">
+          <Typography>&copy; 2022 Javascript 401</Typography>
+          <Typography>React + Redux + Material UI</Typography>
+      </Container>
     </>
   );
 };

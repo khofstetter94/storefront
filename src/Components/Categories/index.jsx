@@ -1,25 +1,26 @@
 import { connect } from "react-redux";
-import { setChosenCategory } from "../../store/categories";
-import { setChosenProducts } from "../../store/products";
+import { setChosenCategory } from "../../store/actions";
+import { Button, ButtonGroup, Typography } from '@mui/material';
 
 const Categories = (props) => {
   console.log(props);
-  const { categories, activeCategory, setChosenCategory } = props;
   return (
     <>
-      <h1>Browse our Categories</h1>
-      {
-        categories.map((category, index) => (
-          <div key={`category-${index}`}>
-            <button onClick={() => {setChosenCategory(category); setChosenProducts(category)}}>{category.displayName}</button>
-          </div>
-        ))
-      }
+      <div>
+        <Typography variant="h5">Browse our Categories</Typography>
+        <ButtonGroup variant="text" aria-label="text button group" >
+          {
+            props.categories.map((category, index) => (
+              <Button key={`category-${index}`} color="primary" onClick={() => props.setChosenCategory(category)}>{category.displayName}</Button>
+            ))
+          }
+        </ButtonGroup>
+      </div>
     </>
   )
 }
 
-const mapStateToProps = ({categories}) => {
+const mapStateToProps = ({ categories }) => {
   return {
     categories: categories.categories,
     activeCategory: categories.activeCategory,

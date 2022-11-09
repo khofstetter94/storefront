@@ -1,7 +1,8 @@
 const initialState = {
   categories: [
-    { normalizedName: 'food', displayName: 'FOOD', description: 'Category Description Goes Here' },
-    { normalizedName: 'electronics', displayName: 'ELECTRONICS', description: 'Category Description Goes Here' }
+    { name: 'electronics', displayName: 'Electronics' },
+    { name: 'food', displayName: 'Food' },
+    { name: 'clothing', displayName: 'Clothing' },
   ],
   activeCategory: '',
 }
@@ -13,16 +14,9 @@ function categoriesReducer(state = initialState, action) {
     case 'CHOSEN':
       return {
         ...state,
-        activeCategory: payload.normalizedName,
+        activeCategory: payload.name.toUpperCase(),
       }
     default: return state;
-  }
-}
-
-export const setChosenCategory = (category) => {
-  return {
-    type: 'CHOSEN',
-    payload: category,
   }
 }
 
