@@ -3,7 +3,6 @@ import { setChosenCategory } from "../../store/actions";
 import { Button, ButtonGroup, Typography } from '@mui/material';
 
 const Categories = (props) => {
-  console.log(props);
   return (
     <>
       <div>

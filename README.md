@@ -10,7 +10,7 @@ This application will power an online storefront that will allow our users to br
 
 ### Links and Resources
 
-- [ci/cd](http://xyz.com) (GitHub Actions)
+- [ci/cd](https://github.com/khofstetter94/storefront/pulls?q=is%3Apr+is%3Aclosed)
 - [front-end application](http://xyz.com) (when applicable)
 
 #### How to initialize/run your application (where applicable)
