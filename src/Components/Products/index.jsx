@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
+import { setSelectedProduct } from "../../store/actions";
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 
 const Products = (props) => {
-  console.log(props);
   const { products, categories } = props;
   return (
     <>
@@ -25,7 +25,7 @@ const Products = (props) => {
                   <Typography variant="body2" color="text.secondary">Stock: {product.inStock}</Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small">ADD TO CART</Button>
+                  <Button size="small" onClick={() => props.setSelectedProduct(product)}>ADD TO CART</Button>
                   <Button size="small">VIEW DETAILS</Button>
                 </CardActions>
               </Card>
@@ -44,4 +44,8 @@ const mapStateToProps = ({ products, categories }) => {
   }
 }
 
-export default connect(mapStateToProps)(Products);
+const mapDispatchToProps = {
+  setSelectedProduct
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
