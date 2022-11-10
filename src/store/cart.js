@@ -6,7 +6,7 @@ function cartReducer(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case 'SELECT-PRODUCT':
+    case 'SELECT_PRODUCT':
       return {
         ...state,
         selectedProducts: [
@@ -14,7 +14,7 @@ function cartReducer(state = initialState, action) {
           payload,
         ],
       }
-    case 'REMOVE-PRODUCT':
+    case 'REMOVE_PRODUCT':
       const selectedProducts = [...state.selectedProducts];
       const matchingIndex = selectedProducts.findIndex(product => product.name === payload.name);
       delete selectedProducts[matchingIndex];
