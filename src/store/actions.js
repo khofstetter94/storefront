@@ -7,14 +7,14 @@ export const setChosenCategory = (category) => {
 
 export const setSelectedProduct = (product) => {
   return {
-    type: 'SELECT-PRODUCT',
+    type: 'SELECT_PRODUCT',
     payload: product,
   }
 }
 
 export const removeSelectedProduct = (product) => {
   return {
-    type: 'REMOVE-PRODUCT',
+    type: 'REMOVE_PRODUCT',
     payload: product,
   }
 }

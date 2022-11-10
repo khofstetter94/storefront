@@ -1,16 +1,26 @@
-import { connect } from "react-redux";
+import { useEffect } from 'react';
+import { connect, useDispatch } from "react-redux";
 import { setSelectedProduct } from "../../store/actions";
+import { getProducts } from '../../store/products';
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 
 const Products = (props) => {
-  const { products, categories } = props;
+  // const { products, categories } = props;
+  // console.log(props);
+
+  let dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+
   return (
     <>
-      <Typography gutterBottom variant="h2" component="div" align="center">{categories.activeCategory}</Typography>
-      <Typography variant="h5" color="text.secondary" align="center">Category Description Goes Here</Typography>
+      <Typography gutterBottom variant="h2" component="div" align="center">{props.categories.activeCategory}</Typography>
+      <Typography variant="h5" color="text.secondary" align="center">{props.categories.activeCategoryDescription}</Typography>
       <Box sx={{ display: 'flex', margin: '25px' }}>
         {
-          products.map((product, index) => {
+          props.filteredProducts.map((product, index) => {
             return (
               <Card key={`product-${index}`} sx={{ maxWidth: 345, margin: '25px' }}>
                 <CardMedia
@@ -39,7 +49,8 @@ const Products = (props) => {
 
 const mapStateToProps = ({ products, categories }) => {
   return {
-    products: products,
+    products: products.products,
+    filteredProducts: products.filteredProducts,
     categories: categories,
   }
 }

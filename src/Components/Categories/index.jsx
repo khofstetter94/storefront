@@ -1,8 +1,16 @@
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+import { getCategories } from '../../store/categories';
 import { setChosenCategory } from "../../store/actions";
 import { Button, ButtonGroup, Typography } from '@mui/material';
+import { useEffect } from "react";
 
 const Categories = (props) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCategories())
+  }, []);
+
   return (
     <>
       <div>
@@ -10,7 +18,7 @@ const Categories = (props) => {
         <ButtonGroup variant="text" aria-label="text button group" >
           {
             props.categories.map((category, index) => (
-              <Button key={`category-${index}`} color="primary" onClick={() => props.setChosenCategory(category)}>{category.displayName}</Button>
+              <Button key={`category-${index}`} color="primary" onClick={() => props.setChosenCategory(category)}>{category.name}</Button>
             ))
           }
         </ButtonGroup>
